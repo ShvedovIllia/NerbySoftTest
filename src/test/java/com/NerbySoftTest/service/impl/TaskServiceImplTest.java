@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,20 +31,18 @@ public class TaskServiceImplTest {
     @Before
     public void setUp() throws Exception {
         TaskEntity taskDummy = TaskDummy.createTask("newDesc", "newTitle", "id");
-        Mockito.when(taskRepository.save(new TaskEntity())).thenReturn(taskDummy);
-        Mockito.when(taskRepository.findById("id")).thenReturn(Optional.of(taskDummy));
+        Mockito.when(taskRepository.save(Mockito.any(TaskEntity.class))).thenReturn(taskDummy);
+        Mockito.when(taskRepository.findById(Mockito.anyString())).thenReturn(Optional.of(taskDummy));
     }
 
     @Test
     public void editTaskTest() throws Exception {
-        TaskEntity taskDummy = TaskDummy.createTask("newDesc", "newTitle", "id");
         TaskEntity entity = taskService.editTask("id", new TaskEntity());
         Assert.assertEquals("newDesc", entity.getDescription());
     }
 
     @Test
     public void createTask() {
-
         TaskEntity entity = taskService.createTask(new TaskEntity());
         Assert.assertEquals("newDesc", entity.getDescription());
     }
