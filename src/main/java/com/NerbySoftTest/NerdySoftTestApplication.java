@@ -1,5 +1,6 @@
 package com.NerbySoftTest;
 
+import com.NerbySoftTest.entity.Entity;
 import com.NerbySoftTest.entity.TaskEntity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,13 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class NerdySoftTestApplication {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         SpringApplication.run(NerdySoftTestApplication.class, args);
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        while (true) {
-            Thread.sleep(150);
-            context.getBean(TaskEntity.class).testMethod();
-        }
     }
 
     @Bean
