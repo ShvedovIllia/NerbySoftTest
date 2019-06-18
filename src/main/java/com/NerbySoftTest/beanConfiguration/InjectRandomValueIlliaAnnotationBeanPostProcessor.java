@@ -10,7 +10,7 @@ import java.util.Random;
 public class InjectRandomValueIlliaAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        Field[] fields = bean.getClass().getDeclaredFields();
+        Field[] fields = bean.getClass().getDeclaredFields()    ;
         for (Field field : fields) {
             RandomValueIllia annotation = field.getAnnotation(RandomValueIllia.class);
             if (annotation!= null) {
