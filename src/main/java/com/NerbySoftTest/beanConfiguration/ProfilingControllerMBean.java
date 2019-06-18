@@ -1,5 +1,5 @@
 package com.NerbySoftTest.beanConfiguration;
 
-public interface ProfilingControllerMbean {
+public interface ProfilingControllerMBean {
     void setEnabled(boolean enabled);
 }

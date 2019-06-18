@@ -1,6 +1,6 @@
 package com.NerbySoftTest.beanConfiguration;
 
-public class ProfilingController implements ProfilingControllerMbean {
+public class ProfilingController implements ProfilingControllerMBean {
 
     private boolean enabled = true;
 
