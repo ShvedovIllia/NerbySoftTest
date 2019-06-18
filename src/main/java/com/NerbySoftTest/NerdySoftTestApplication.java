@@ -14,6 +14,7 @@ public class NerdySoftTestApplication {
     public static void main(String[] args) {
         SpringApplication.run(NerdySoftTestApplication.class, args);
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+        context.getBean(Entity.class).testMethod();
     }
 
     @Bean
