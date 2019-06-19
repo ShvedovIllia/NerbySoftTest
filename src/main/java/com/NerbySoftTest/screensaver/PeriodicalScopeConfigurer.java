@@ -15,14 +15,14 @@ public class PeriodicalScopeConfigurer implements Scope {
 
     @Override
     public Object get(String s, ObjectFactory<?> objectFactory) {
-        if (!map.containsKey(s)) {
+        if (map.containsKey(s)) {
             Pair<LocalTime, Object> pair = map.get(s);
             int secondsSinceLastRequest = now().getSecond() - pair.getKey().getSecond();
             if (secondsSinceLastRequest > 3) {
                 map.put(s, new Pair<>(now(), objectFactory.getObject()));
-            } else {
-                map.put(s, new Pair<>(now(), objectFactory.getObject()));
             }
+        } else {
+            map.put(s, new Pair<>(now(), objectFactory.getObject()));
         }
         return map.get(s).getValue();
     }
@@ -34,7 +34,6 @@ public class PeriodicalScopeConfigurer implements Scope {
 
     @Override
     public void registerDestructionCallback(String s, Runnable runnable) {
-
     }
 
     @Override
