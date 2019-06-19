@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 @Document(collection = "tasks")
 
 @Profiling
+@DeprecatedClass(newImpl = NewEntity.class)
 public class TaskEntity implements Entity{
 
     @Id
@@ -39,6 +40,7 @@ public class TaskEntity implements Entity{
     @Override
     @PostProxy
     public void testMethod () {
+        System.out.println("Third phase with application context");
         for (int i = 0; i < someValue; i++) {
             System.out.println(taskField);
         }
