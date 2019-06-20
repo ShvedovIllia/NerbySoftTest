@@ -34,5 +34,4 @@ public class Config {
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
     }
-
 }
