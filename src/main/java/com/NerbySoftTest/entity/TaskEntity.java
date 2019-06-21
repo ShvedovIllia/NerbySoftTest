@@ -1,6 +1,7 @@
 package com.NerbySoftTest.entity;
 
 
+import com.NerbySoftTest.beanConfiguration.NewRandomIllia;
 import com.NerbySoftTest.beanConfiguration.Profiling;
 import com.NerbySoftTest.beanConfiguration.RandomValueIllia;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import javax.annotation.PostConstruct;
 @Document(collection = "tasks")
 
 @Profiling
-@DeprecatedClass(newImpl = NewEntity.class)
+//@DeprecatedClass(newImpl = NewEntity.class)
 public class TaskEntity implements Entity {
 
     @Id
@@ -23,10 +24,18 @@ public class TaskEntity implements Entity {
     private String title;
     private String description;
 
+    @NewRandomIllia(min = 10, max = 20)
+    private Integer coolValue;
+
     private String taskField;
 
     @RandomValueIllia(min = 2, max = 9)
     private int someValue;
+
+    @PostConstruct
+    private void showRandomValue() {
+        System.out.println("new test " + coolValue);
+    }
 
     public TaskEntity() {
         System.out.println("Default constructor");
