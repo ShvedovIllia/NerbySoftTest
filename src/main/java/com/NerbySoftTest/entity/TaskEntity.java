@@ -1,6 +1,7 @@
 package com.NerbySoftTest.entity;
 
 
+import com.NerbySoftTest.beanConfiguration.NewRandomIllia;
 import com.NerbySoftTest.beanConfiguration.Profiling;
 import com.NerbySoftTest.beanConfiguration.RandomValueIllia;
 import lombok.Getter;
@@ -15,13 +16,16 @@ import javax.annotation.PostConstruct;
 @Document(collection = "tasks")
 
 @Profiling
-@DeprecatedClass(newImpl = NewEntity.class)
-public class TaskEntity implements Entity{
+//@DeprecatedClass(newImpl = NewEntity.class)
+public class TaskEntity implements Entity {
 
     @Id
     private String id;
     private String title;
     private String description;
+
+    @NewRandomIllia(min = 10, max = 20)
+    private Integer coolValue;
 
     private String taskField;
 
@@ -29,20 +33,27 @@ public class TaskEntity implements Entity{
     private int someValue;
 
     @PostConstruct
-    private void init(){
-        System.out.println("Second phase of constructor");
+    private void showRandomValue() {
+        System.out.println("new test " + coolValue);
     }
 
     public TaskEntity() {
         System.out.println("Default constructor");
     }
 
+    @PostConstruct
+    private void init() {
+        System.out.println("Second phase of constructor");
+    }
+
     @Override
     @PostProxy
-    public void testMethod () {
+    public void testMethod() {
         System.out.println("Third phase with application context");
         for (int i = 0; i < someValue; i++) {
             System.out.println(taskField);
         }
     }
+
+
 }

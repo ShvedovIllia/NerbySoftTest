@@ -1,9 +1,8 @@
 package com.NerbySoftTest.screensaver;
 
-import org.springframework.context.annotation.*;
-
-import java.awt.*;
-import java.util.Random;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan
@@ -18,20 +17,20 @@ public class Config {
 
     }
 
-    @Bean
-    public ColorFrame frame() {
-        return new ColorFrame() {
-            @Override
-            protected Color getColor() {
-                return color();
-            }
-        };
-    }
+//    @Bean
+//    public ColorFrame frame() {
+//        return new ColorFrame() {
+//            @Override
+//            protected Color getColor() {
+//                return color();
+//            }
+//        };
+//    }
 
-    @Bean
-    @Scope("periodical")
-    public Color color() {
-        Random random = new Random();
-        return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
-    }
+//    @Bean
+//    @Scope("periodical")
+//    public Color color() {
+//        Random random = new Random();
+//        return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
+//    }
 }
