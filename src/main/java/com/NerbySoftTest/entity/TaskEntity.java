@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 
 @Profiling
 @DeprecatedClass(newImpl = NewEntity.class)
-public class TaskEntity implements Entity{
+public class TaskEntity implements Entity {
 
     @Id
     private String id;
@@ -28,21 +28,23 @@ public class TaskEntity implements Entity{
     @RandomValueIllia(min = 2, max = 9)
     private int someValue;
 
-    @PostConstruct
-    private void init(){
-        System.out.println("Second phase of constructor");
-    }
-
     public TaskEntity() {
         System.out.println("Default constructor");
     }
 
+    @PostConstruct
+    private void init() {
+        System.out.println("Second phase of constructor");
+    }
+
     @Override
     @PostProxy
-    public void testMethod () {
+    public void testMethod() {
         System.out.println("Third phase with application context");
         for (int i = 0; i < someValue; i++) {
             System.out.println(taskField);
         }
     }
+
+
 }
